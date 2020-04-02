@@ -391,6 +391,8 @@ The `deploymentStrategy` can be used to optionally configure the [strategy](http
 
 Pega supports a variety of configuration options for cluster-wide and application settings. In cases when you want to pass a specific environment variable into your deployment on a tier-by-tier basis, you specify a custom `env` block for your tier as shown in the example below.
 
+To inject Dynamic System Settings via the Pega Helm Charts, specify the environment variable “NODE_SETTINGS”.  The value for this variable may contain a semicolon separated list of Data-Admin-System-Settings in the format of `RULESET/SETTING=VALUE;`.
+
 Example:
 
 ```yaml
@@ -398,6 +400,8 @@ tier:
   - name: my-tier
     custom:
       env:
+        - name: NODE_SETTINGS
+          value: “Pega-IntegrationEngine/EnableRequestorPools=false;”
         - name: MY_ENV_NAME
           value: MY_ENV_VALUE
 ```
